@@ -1,75 +1,94 @@
 // ARDUINO LAB
 const materialData = {
-    "24V Röle": { img: "Arduino%20Atölyesi/24v_role.jpg", desc: "Yüksek voltajlı cihazları kontrol etmek içindir." },
-    "7 Segment Ekran": { img: "Arduino%20Atölyesi/7segment_ekran.jpg", desc: "Rakamları göstermek için kullanılan LED ekran." },
-    "9V Pil": { img: "Arduino%20Atölyesi/9v_pil.jpg", desc: "Devreye enerji sağlayan temel güç kaynağı." },
-    "ADXL345 Eğim Sensörü": { img: "Arduino%20Atölyesi/adxl345.jpg", desc: "Hassas eğim ve ivme ölçümü yapar." },
-    "Alev Sensörü": { img: "Arduino%20Atölyesi/ates_sensoru.jpg", desc: "Yangın ve kızılötesi ışığı algılar." },
+    "24V Röle": { img: "Arduino%20Atölyesi/24v_role.jpg", desc: "Yüksek voltajlı cihaz kontrolü." },
+    "7 Segment Ekran": { img: "Arduino%20Atölyesi/7segment_ekran.jpg", desc: "Sayısal gösterge paneli." },
+    "9V Pil": { img: "Arduino%20Atölyesi/9v_pil.jpg", desc: "Temel güç kaynağı." },
+    "ADXL345 Eğim Sensörü": { img: "Arduino%20Atölyesi/adxl345.jpg", desc: "Eğim ve ivme ölçer." },
+    "Alev Sensörü": { img: "Arduino%20Atölyesi/ates_sensoru.jpg", desc: "Ateş algılama sensörü." },
     "Arduino Nano": { img: "Arduino%20Atölyesi/arduino_nano.jpg", desc: "Kompakt mikrodenetleyici." },
-    "Arduino Uno R3": { img: "Arduino%20Atölyesi/arduino_uno.jpg", desc: "Sistemin beyni, kodları işleyen ana merkez." },
-    "Breadboard": { img: "Arduino%20Atölyesi/breadboard.jpg", desc: "Lehimsiz devre kurma test tahtası." },
-    "Buton": { img: "Arduino%20Atölyesi/buton.jpg", desc: "Basıldığında sinyal gönderen anahtar." },
-    "Buzzer": { img: "Arduino%20Atölyesi/buzzer.jpg", desc: "Sesli uyarı ve sinyal vermeyi sağlar." },
-    "Çizgi Sensörü": { img: "Arduino%20Atölyesi/cizgi_sensoru.jpg", desc: "Siyah ve beyaz zemini ayırt eder." },
-    "DC Motor": { img: "Arduino%20Atölyesi/dc_motor.jpg", desc: "Dönme hareketi sağlayan motor." },
-    "DHT11 Sıcaklık Sensörü": { img: "Arduino%20Atölyesi/sicaklik_sensoru.jpg", desc: "Sıcaklık ve nem ölçer." },
-    "Dijital Amplifikatör": { img: "Arduino%20Atölyesi/dijital_amplifikator.jpg", desc: "Ses sinyallerini yükseltir." },
+    "Arduino Uno R3": { img: "Arduino%20Atölyesi/arduino_uno.jpg", desc: "Ana kontrol ünitesi." },
+    "Breadboard": { img: "Arduino%20Atölyesi/breadboard.jpg", desc: "Devre kurma tahtası." },
+    "Buton": { img: "Arduino%20Atölyesi/buton.jpg", desc: "Basit anahtar." },
+    "Buzzer": { img: "Arduino%20Atölyesi/buzzer.jpg", desc: "Sesli uyarı sistemi." },
+    "Çizgi Sensörü": { img: "Arduino%20Atölyesi/cizgi_sensoru.jpg", desc: "Yol takip sensörü." },
+    "DC Motor": { img: "Arduino%20Atölyesi/dc_motor.jpg", desc: "Dönme hareketi sağlar." },
+    "DHT11 Sıcaklık Sensörü": { img: "Arduino%20Atölyesi/sicaklik_sensoru.jpg", desc: "Isı ve nem ölçer." },
+    "Dijital Amplifikatör": { img: "Arduino%20Atölyesi/dijital_amplifikator.jpg", desc: "Ses yükseltici." },
     "DIP Switch": { img: "Arduino%20Atölyesi/dip_switch.jpg", desc: "Çoklu ayar anahtarı." },
-    "Direnç": { img: "Arduino%20Atölyesi/direnc.jpg", desc: "Akımı sınırlayarak parçaları korur." },
-    "ESP32-Cam": { img: "Arduino%20Atölyesi/esp32_cam.jpg", desc: "WiFi kamera ve AI modülü." },
-    "Gaz Sensörü": { img: "Arduino%20Atölyesi/gaz_sensoru.jpg", desc: "Gaz kaçaklarını algılar." },
-    "GPS Modülü": { img: "Arduino%20Atölyesi/gps_modulu.jpg", desc: "Uydu üzerinden konum verisi sağlar." },
-    "HC-06 Bluetooth": { img: "Arduino%20Atölyesi/hc06_bluetooth.jpg", desc: "Kablosuz kontrol sağlar." },
-    "IR Kumanda Kiti": { img: "Arduino%20Atölyesi/ir_kumanda_kit.jpg", desc: "Uzaktan kumanda seti." },
-    "Joystick": { img: "Arduino%20Atölyesi/joystick.jpg", desc: "Manuel yön kontrol kolu." },
-    "Jumper Kablo": { img: "Arduino%20Atölyesi/jumper.jpg", desc: "Bileşenler arası bağlantı kurar." },
+    "Direnç": { img: "Arduino%20Atölyesi/direnc.jpg", desc: "Akım sınırlayıcı." },
+    "DTMF Modülü": { img: "Arduino%20Atölyesi/dtmf_modul.jpg", desc: "Telefon sinyal çözücü." },
+    "ESP32-Cam": { img: "Arduino%20Atölyesi/esp32_cam.jpg", desc: "WiFi kamera modülü." },
+    "Fan Modülü": { img: "Arduino%20Atölyesi/fan_modulu.jpg", desc: "Soğutma pervanesi." },
+    "Gaz Sensörü": { img: "Arduino%20Atölyesi/gaz_sensoru.jpg", desc: "Gaz kaçağı algılayıcı." },
+    "GPS Modülü": { img: "Arduino%20Atölyesi/gps_modulu.jpg", desc: "Konum belirleme." },
+    "Güneş Paneli": { img: "Arduino%20Atölyesi/gunes_paneli.jpg", desc: "Işıktan enerji üretir." },
+    "Havya": { img: "Arduino%20Atölyesi/havya.jpg", desc: "Lehimleme aracı." },
+    "HC-06 Bluetooth": { img: "Arduino%20Atölyesi/hc06_bluetooth.jpg", desc: "Kablosuz iletişim." },
+    "IR Kumanda Kiti": { img: "Arduino%20Atölyesi/ir_kumanda_kit.jpg", desc: "Uzaktan kontrol seti." },
+    "Joystick": { img: "Arduino%20Atölyesi/joystick.jpg", desc: "Manuel kontrol kolu." },
+    "Jumper Kablo": { img: "Arduino%20Atölyesi/jumper.jpg", desc: "Bağlantı kabloları." },
+    "Kalıcı Buton": { img: "Arduino%20Atölyesi/kalici_buton.jpg", desc: "Konumunu koruyan anahtar." },
+    "Kamera Modülü": { img: "Arduino%20Atölyesi/kamera_modulu.jpg", desc: "Görüntü sensörü." },
+    "Kenar Sensörü": { img: "Arduino%20Atölyesi/kenar_sensoru.jpg", desc: "Boşluk algılayıcı." },
     "Keypad": { img: "Arduino%20Atölyesi/keypad.jpg", desc: "Sayısal tuş takımı." },
-    "L298N Motor Sürücü": { img: "Arduino%20Atölyesi/l298n.jpg", desc: "Motor hız ve yön kontrolü." },
-    "LCD Ekran": { img: "Arduino%20Atölyesi/lcd_ekran.jpg", desc: "Bilgi yazdırma ekranı." },
-    "LDR Işık Sensörü": { img: "Arduino%20Atölyesi/ldr_sensor.jpg", desc: "Işık şiddetini ölçer." },
-    "LED": { img: "Arduino%20Atölyesi/led.jpg", desc: "Işıklı bildirim elemanı." },
-    "Li-Po Batarya": { img: "Arduino%20Atölyesi/lipo_batarya.jpg", desc: "Yüksek kapasiteli batarya." },
-    "Mesafe Sensörü": { img: "Arduino%20Atölyesi/mesafe_sensoru.jpg", desc: "Engel mesafesini ölçer." },
-    "Mikrofon Modülü": { img: "Arduino%20Atölyesi/mikrofon_modulu.jpg", desc: "Ses şiddetini algılar." },
-    "Multimetre": { img: "Arduino%20Atölyesi/multimetre.jpg", desc: "Ölçüm ve test cihazı." },
-    "Nabız Sensörü": { img: "Arduino%20Atölyesi/nabiz_sensoru.jpg", desc: "Kalp atış hızını ölçer." },
-    "Nem Kontrol": { img: "Arduino%20Atölyesi/nem_kontrol.jpg", desc: "Toprak nemini ölçer." },
-    "OLED Ekran": { img: "Arduino%20Atölyesi/oled_ekran.jpg", desc: "Grafik bilgi ekranı." },
-    "Parmak İzi": { img: "Arduino%20Atölyesi/parmak_izi.jpg", desc: "Biyometrik doğrulama." },
+    "Kondansatör": { img: "Arduino%20Atölyesi/kondansator.jpg", desc: "Enerji depolayıcı." },
+    "L298N Motor Sürücü": { img: "Arduino%20Atölyesi/l298n.jpg", desc: "Motor yön kontrolü." },
+    "LCD Ekran": { img: "Arduino%20Atölyesi/lcd_ekran.jpg", desc: "Yazı gösterge ekranı." },
+    "LED": { img: "Arduino%20Atölyesi/led.jpg", desc: "Işıklı bildirim." },
+    "Li-Po Batarya": { img: "Arduino%20Atölyesi/lipo_batarya.jpg", desc: "Yüksek kapasiteli güç." },
+    "Mesafe Sensörü": { img: "Arduino%20Atölyesi/mesafe_sensoru.jpg", desc: "Mesafe ölçer." },
+    "Mikrofon Modülü": { img: "Arduino%20Atölyesi/mikrofon_modulu.jpg", desc: "Ses algılayıcı." },
+    "Nabız Sensörü": { img: "Arduino%20Atölyesi/nabiz_sensoru.jpg", desc: "Kalp ritmi ölçer." },
+    "Nem Kontrol": { img: "Arduino%20Atölyesi/nem_kontrol.jpg", desc: "Toprak nem ölçer." },
+    "OLED Ekran": { img: "Arduino%20Atölyesi/oled_ekran.jpg", desc: "Grafik ekran." },
+    "Parmak İzi": { img: "Arduino%20Atölyesi/parmak_izi.jpg", desc: "Biyometrik okuyucu." },
     "PIR Sensör": { img: "Arduino%20Atölyesi/pir_sensor.jpg", desc: "Hareket algılayıcı." },
     "Potansiyometre": { img: "Arduino%20Atölyesi/potansiyometre.jpg", desc: "Ayarlı direnç." },
-    "Redüktörlü Motor": { img: "Arduino%20Atölyesi/reduktorlu_motor.jpg", desc: "Güçlü dişli motor." },
+    "Redüktörlü Motor": { img: "Arduino%20Atölyesi/reduktorlu_motor.jpg", desc: "Dişli DC motor." },
+    "Renk Sensörü": { img: "Arduino%20Atölyesi/renk_sensoru.jpg", desc: "RGB renk algılayıcı." },
     "RFID Kit": { img: "Arduino%20Atölyesi/rfid_kit.jpg", desc: "Kartlı geçiş sistemi." },
-    "RTC Saat Modülü": { img: "Arduino%20Atölyesi/rtc_modul.jpg", desc: "Gerçek zamanlı saat." },
-    "Servo Motor": { img: "Arduino%20Atölyesi/servo.jpg", desc: "Hassas açılı motor." },
-    "Sigorta": { img: "Arduino%20Atölyesi/sigorta.jpg", desc: "Devre koruma elemanı." },
-    "Step Motor": { img: "Arduino%20Atölyesi/step_motor.jpg", desc: "Adımlı hassas motor." },
-    "Su Pompası": { img: "Arduino%20Atölyesi/su_pompasi.jpg", desc: "Sıvı aktarma motoru." },
+    "RTC Saat Modülü": { img: "Arduino%20Atölyesi/rtc_modul.jpg", desc: "Zaman modülü." },
+    "Servo Motor": { img: "Arduino%20Atölyesi/servo.jpg", desc: "Açılı motor." },
+    "Sigorta": { img: "Arduino%20Atölyesi/sigorta.jpg", desc: "Devre koruyucu." },
+    "Step Motor": { img: "Arduino%20Atölyesi/step_motor.jpg", desc: "Hassas adımlı motor." },
+    "Su Pompası": { img: "Arduino%20Atölyesi/su_pompasi.jpg", desc: "Sıvı aktarıcı motor." },
+    "Tact Buton": { img: "Arduino%20Atölyesi/tact_buton.jpg", desc: "Küçük tetikleyici." },
     "Tekerlek": { img: "Arduino%20Atölyesi/Tekerlek.jpg", desc: "Robot tekerleği." },
-    "Toz Sensörü": { img: "Arduino%20Atölyesi/toz_sensoru.jpg", desc: "Toz miktarını ölçer." },
-    "Vakum Motoru": { img: "Arduino%20Atölyesi/vakum_motoru.jpg", desc: "Süpürme motoru." },
-    "Yağmur Sensörü": { img: "Arduino%20Atölyesi/yagmur_sensoru.jpg", desc: "Yağışı algılar." }
+    "Touch Pad": { img: "Arduino%20Atölyesi/touch_pad.jpg", desc: "Dokunmatik yüzey." },
+    "Toz Sensörü": { img: "Arduino%20Atölyesi/toz_sensoru.jpg", desc: "Hava kalitesi ölçer." },
+    "USB Kablo": { img: "Arduino%20Atölyesi/usb.jpg", desc: "Veri kablosu." },
+    "Vakum Motoru": { img: "Arduino%20Atölyesi/vakum_motoru.jpg", desc: "Emiş motoru." },
+    "Yağmur Sensörü": { img: "Arduino%20Atölyesi/yagmur_sensoru.jpg", desc: "Yağış algılayıcı." }
 };
 
 const projectDatabase = [
-    { id: "p1", name: "Bluetooth Araba", required: ["Arduino Uno R3", "HC-06 Bluetooth", "L298N Motor Sürücü", "Redüktörlü Motor", "Tekerlek"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/Bluetooth%20araba.png", text: "Bluetooth modülünü RX-TX pinlerine çapraz bağlayın ve motor sürücü bağlantılarını yapın." }] },
-    { id: "p2", name: "Engelden Kaçan Robot", required: ["Arduino Uno R3", "Mesafe Sensörü", "Servo Motor", "L298N Motor Sürücü", "Tekerlek"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/engelden%20kaçan%20araba.png", text: "Mesafe sensörünü servo üzerine monte edip otonom sürüş kodunu yükleyin." }] },
-    { id: "p3", name: "RFID Kapı Sistemi", required: ["Arduino Uno R3", "RFID Kit", "Servo Motor", "LCD Ekran"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/rfid%20kapı%20sistemi.png", text: "RFID SPI bağlantılarını kurun ve tanımlı kart okunduğunda kilidi açacak servoyu programlayın." }] },
-    { id: "p16", name: "Akıllı Park Sensörü", required: ["Arduino Uno R3", "Mesafe Sensörü", "Buzzer", "LED"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/park%20sensörü.jpg", text: "Mesafeye göre buzzer ve LED hızını ayarlayan sistemi kurun." }] },
-    { id: "p19", name: "Labirent Oyunu", required: ["Arduino Nano", "Joystick", "Servo Motor"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/labirent%20oyunu.jpg", text: "Servo motorlarla labirent tablasına Joystick üzerinden yön verin." }] },
-    { id: "p20", name: "Otto Robot", required: ["Arduino Nano", "Servo Motor", "Mesafe Sensörü"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/otto%20robot.jpg", text: "Arduino Nano ile bacak mekanizmasını kontrol edin." }] },
-    { id: "p24", name: "Akıllı Saat", required: ["Arduino Nano", "RTC Saat Modülü", "OLED Ekran", "Nabız Sensörü"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/akıllı%20saat.jpg", text: "Zaman ve nabız verilerini OLED ekranda grafikleyin." }] },
-    { id: "p26", name: "Parmak İzi Kasa", required: ["Arduino Nano", "Parmak İzi", "Step Motor", "OLED Ekran"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/parmak%20izi%20okuyucu%20ile%20kasa%20kilidi.jpg", text: "Tanımlı parmak okunduğunda step motor ile kilidi açın." }] },
-    { id: "p27", name: "Robot Süpürge", required: ["Arduino Uno R3", "Mesafe Sensörü", "Vakum Motoru", "Toz Sensörü", "Sarhoş Tekerlek"], 
-      steps: [{ img: "Ardiino%20Proje%20Görselleri/robot%20süpürge.jpg", text: "Vakum ve sürüş sistemini aktif ederek otonom temizlik yapın." }] }
+    { id: "p1", name: "1. Bluetooth Araba", required: ["Arduino Uno R3", "HC-06 Bluetooth", "L298N Motor Sürücü", "Redüktörlü Motor", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/Bluetooth%20araba.png", text: "Bluetooth ve motor bağlantılarını şemaya göre yapın." }] },
+    { id: "p2", name: "2. Engelden Kaçan Robot", required: ["Arduino Uno R3", "Mesafe Sensörü", "Servo Motor", "L298N Motor Sürücü", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/engelden%20kaçan%20araba.png", text: "Mesafe sensörünü öne monte edip otonom sürüşü kodlayın." }] },
+    { id: "p3", name: "3. RFID Kapı Sistemi", required: ["Arduino Uno R3", "RFID Kit", "Servo Motor", "LCD Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/rfid%20kapı%20sistemi.png", text: "Kart tanımlandığında servoyu döndürerek kilidi açın." }] },
+    { id: "p4", name: "4. Yangın Alarmı", required: ["Arduino Uno R3", "Alev Sensörü", "Buzzer", "LED"], steps: [{ img: "Ardıino%20Proje%20Görselleri/yangın%20alarm%20sistemi.png", text: "Alev algılandığında buzzer ile alarm çalın." }] },
+    { id: "p5", name: "5. Akıllı Sulama", required: ["Arduino Uno R3", "Nem Kontrol", "Su Pompası", "24V Röle"], steps: [{ img: "Ardıino%20Proje%20Görselleri/akıllı%20sulama.jpg", text: "Toprak kuruduğunda pompayı otomatik çalıştırın." }] },
+    { id: "p6", name: "6. Ses Kontrollü Işık", required: ["Arduino Uno R3", "Mikrofon Modülü", "24V Röle"], steps: [{ img: "Ardıino%20Proje%20Görselleri/ses%20kontrollü%20ışık.jpg", text: "Sesi algılayınca ışığı açan devreyi kurun." }] },
+    { id: "p7", name: "7. Joystick Kontrollü Araba", required: ["Arduino Uno R3", "Joystick", "L298N Motor Sürücü", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/joystick%20kontrollü%20araba.jpg", text: "Joystick hareketlerini motorlara yön olarak atayın." }] },
+    { id: "p8", name: "8. IR Kumandalı Robot", required: ["Arduino Uno R3", "IR Kumanda Kiti", "L298N Motor Sürücü", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/ır%20kumandalı%20robot.jpg", text: "Kumanda tuşlarıyla robotu uzaktan yönetin." }] },
+    { id: "p9", name: "9. Güvenlik Sistemi", required: ["Arduino Uno R3", "PIR Sensör", "Buzzer", "Keypad"], steps: [{ img: "Ardıino%20Proje%20Görselleri/güvenlik%20sistemi.jpg", text: "Hareket algılandığında şifre girilene kadar alarm verin." }] },
+    { id: "p10", name: "10. Gaz Alarmı", required: ["Arduino Uno R3", "Gaz Sensörü", "Buzzer", "LCD Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/gaz%20alarmı.jpg", text: "Sızıntı anında LCD'de uyarı gösterin." }] },
+    { id: "p11", name: "11. WiFi Kamera Sistemi", required: ["ESP32-Cam", "PIR Sensör", "9V Pil"], steps: [{ img: "Ardıino%20Proje%20Görselleri/wifi%20kamera%20sistemi.jpg", text: "Hareket olunca WiFi üzerinden görüntü aktarın." }] },
+    { id: "p12", name: "12. Nabız Ölçer", required: ["Arduino Uno R3", "Nabız Sensörü", "OLED Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/nabız%20ölçer.jpg", text: "Kalp ritmini hesaplayıp ekranda grafikleyin." }] },
+    { id: "p13", name: "13. Akıllı Sera", required: ["Arduino Uno R3", "Nem Kontrol", "DHT11 Sıcaklık Sensörü", "LCD Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/akıllı%20sera.jpg", text: "Sera verilerini LCD ekrandan anlık takip edin." }] },
+    { id: "p14", name: "14. Saat Sistemi", required: ["Arduino Uno R3", "RTC Saat Modülü", "7 Segment Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/saat%20sistemi.jpg", text: "Güncel saati sayısal ekranda gösterin." }] },
+    { id: "p15", name: "15. Touch Kontrollü Araba", required: ["Arduino Uno R3", "Touch Pad", "L298N Motor Sürücü", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/touch%20kontrollü%20araba.jpg", text: "Dokunmatik yüzeyle aracı yönlendirin." }] },
+    { id: "p16", name: "16. Akıllı Park Sensörü", required: ["Arduino Uno R3", "Mesafe Sensörü", "Buzzer", "LED"], steps: [{ img: "Ardıino%20Proje%20Görselleri/park%20sensörü.jpg", text: "Mesafeye göre buzzer sesini hızlandırın." }] },
+    { id: "p17", name: "17. Çizgi İzleyen Akıllı Robot", required: ["Arduino Uno R3", "L298N Motor Sürücü", "Çizgi Sensörü", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", text: "Siyah çizgiyi takip eden sistemi kurun." }] },
+    { id: "p18", name: "18. Yüz Tanıma Sistemi", required: ["ESP32-Cam", "24V Röle", "OLED Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/yüz%20tanıma%20sistemi.jpg", text: "Kayıtlı yüzü görünce geçit verin." }] },
+    { id: "p19", name: "19. Labirent Oyunu", required: ["Arduino Nano", "Joystick", "Servo Motor"], steps: [{ img: "Ardıino%20Proje%20Görselleri/labirent%20oyunu.jpg", text: "Joystick ile labirent tablasını hareket ettirin." }] },
+    { id: "p20", name: "20. Otto Robot", required: ["Arduino Nano", "Servo Motor", "Mesafe Sensörü"], steps: [{ img: "Ardıino%20Proje%20Görselleri/otto%20robot.jpg", text: "Servo motorlarla robotu yürütün." }] },
+    { id: "p21", name: "21. Renk Ayırıcı", required: ["Arduino Nano", "Renk Sensörü", "Servo Motor"], steps: [{ img: "Ardıino%20Proje%20Görselleri/renk%20ayırıcı.jpg", text: "Renge göre servoyu doğru konuma döndürün." }] },
+    { id: "p22", name: "22. Sumo Robot", required: ["Arduino Uno R3", "L298N Motor Sürücü", "Tekerlek", "Çizgi Sensörü"], steps: [{ img: "Ardıino%20Proje%20Görselleri/sumo%20robot.jpg", text: "Rakibi dışarı atan savaşçı robotu yapın." }] },
+    { id: "p23", name: "23. Ateş Ölçer", required: ["Arduino Nano", "DHT11 Sıcaklık Sensörü", "LCD Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/ateş%20ölçer.jpg", text: "Isıyı ölçüp anlık ekrana yazdırın." }] },
+    { id: "p24", name: "24. Akıllı Saat Projesi", required: ["Arduino Nano", "RTC Saat Modülü", "OLED Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/akıllı%20saat.jpg", text: "Bileğe takılabilir dijital saat yapın." }] },
+    { id: "p25", name: "25. Dijital Su Terazisi", required: ["Arduino Nano", "ADXL345 Eğim Sensörü", "OLED Ekran"], steps: [{ img: "Ardıino%20Proje%20Görselleri/dijital%20su%20terazisi.jpg", text: "Eğim derecesini ekranda gösterin." }] },
+    { id: "p26", name: "26. Parmak İzi Okuyucu Kasa", required: ["Arduino Nano", "Parmak İzi", "Step Motor", "Keypad"], steps: [{ img: "Ardıino%20Proje%20Görselleri/parmak%20izi%20okuyucu%20ile%20kasa%20kilidi.jpg", text: "Parmak iziyle açılan güvenli kasa yapın." }] },
+    { id: "p27", name: "27. Robot Süpürge", required: ["Arduino Uno R3", "Mesafe Sensörü", "Vakum Motoru", "Redüktörlü Motor", "Tekerlek"], steps: [{ img: "Ardıino%20Proje%20Görselleri/robot%20süpürge.jpg", text: "Otonom süpürme ve temizlik rotası çizin." }] }
 ];
 
 let selectedInventory = [];
@@ -90,7 +109,7 @@ function renderInventory(items) {
         const data = materialData[name];
         const div = document.createElement('div');
         div.className = 'inv-item';
-        div.innerHTML = `<strong>${name}</strong><p style="font-size:10px; color:#aaa; margin-top:5px;">${data.desc}</p>`;
+        div.innerHTML = `<strong>${name}</strong><p style="font-size:10px; color:#aaa; margin:5px 0;">${data.desc}</p>`;
         div.onclick = () => addToTable(name);
         list.appendChild(div);
     });
@@ -107,9 +126,9 @@ function addToTable(name) {
         itemContainer.style.top = `${Math.random() * 45 + 15}%`;
         itemContainer.innerHTML = `
             <div style="position:relative; text-align:center; cursor:pointer;" onclick="removeFromTable('${name}', this.parentElement)">
-                <span style="position:absolute; top:-12px; right:-12px; background:#ff4d4d; color:white; border-radius:50%; width:22px; height:22px; font-size:13px; display:flex; align-items:center; justify-content:center; z-index:100; border:1px solid #fff; font-weight:bold;">×</span>
+                <span style="position:absolute; top:-12px; right:-12px; background:#ff4d4d; color:white; border-radius:50%; width:22px; height:22px; font-size:14px; display:flex; align-items:center; justify-content:center; z-index:100; border:1px solid #fff; font-weight:bold;">×</span>
                 <img src="${materialData[name].img}" width="80" style="border: 2px solid #00f3ff; border-radius: 8px; background: #fff; box-shadow: 0 0 10px rgba(0,243,255,0.3);">
-                <div style="font-size: 10px; color: #00f3ff; font-weight: bold; margin-top: 4px;">${name}</div>
+                <div style="font-size: 10px; color: #00f3ff; font-weight: bold; margin-top: 5px; text-shadow: 1px 1px 2px #000;">${name}</div>
             </div>
         `;
         document.getElementById('table-canvas').appendChild(itemContainer);
@@ -131,7 +150,7 @@ function checkProjects() {
     if (available.length > 0) {
         linkBox.innerHTML = available.map(p => `<button class="project-btn" onclick="openManual('${p.id}')">${p.name}</button>`).join('');
     } else {
-        linkBox.innerHTML = `<p style="font-size: 11px; color: #888;">Eksik parçaları ekleyin.</p>`;
+        linkBox.innerHTML = `<p style="font-size: 11px; color: #888;">Gerekli parçaları ekleyin.</p>`;
     }
 }
 
@@ -154,7 +173,7 @@ function updateStepUI() {
     imgEl.onerror = function() {
         this.style.display = 'none';
         const parent = this.parentElement;
-        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen Ardiino Proje Görselleri klasörünü kontrol edin.</div>`;
+        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen "Ardiino Proje Görselleri" klasöründeki ismi kontrol edin: ${step.img}</div>`;
     };
     document.getElementById('m-project-parts').innerHTML = currentProject.required.map(p => `<span class="part-tag">${p}</span>`).join('');
 }
