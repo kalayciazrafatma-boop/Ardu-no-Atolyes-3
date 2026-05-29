@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Tasarım Merkezi Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- SOL PANEL: Envanter -->
+        <aside class="sidebar">
+            <div class="logo">ARDUINO TASARIM MERKEZİ</div>
+            <div class="search-box">
+                <input type="text" id="partSearch" placeholder="Parça ara..." onkeyup="searchParts()">
+            </div>
+            <h3>MALZEME ENVANTERİ</h3>
+            <div id="inventory-list" class="inventory-grid"></div>
+        </aside>
+
+        <!-- ANA ALAN: Deney Masası -->
+        <main class="workbench">
+            <div class="hud-display">
+                <div class="status-panel">
+                    <div>SİSTEM: <span class="neon-text">HAZIR</span></div>
+                    <div>MASADA: <span id="part-count">0</span> PARÇA</div>
+                </div>
+                <div class="project-panel">
+                    <h4>ÜRETİLEBİLİR PROJELER</h4>
+                    <div id="project-links">
+                        <p style="font-size: 11px; color: #888;">Parçaları ekleyerek projeleri keşfet!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="table-canvas" class="grid-table">
+                <div class="watermark">SANAL ROBOTİK TASARIM ALANI</div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ADIM ADIM YAPIM REHBERİ MODAL -->
+    <div id="manual-modal" class="modal">
+        <div class="manual-book">
+            <span class="close-manual" onclick="closeManual()">&times;</span>
+            <header class="manual-header">
+                <div id="step-indicator" class="manual-id">ADIM 1 / 1</div>
+                <h2 id="m-project-name">PROJE ADI</h2>
+            </header>
+            <div class="manual-body">
+                <div class="manual-visual">
+                    <img id="m-project-img" src="" alt="İşlem Şeması">
+                </div>
+                <div class="manual-steps">
+                    <h3>İŞLEM TALİMATI</h3>
+                    <div class="step-content">
+                        <p id="m-project-steps"></p>
+                    </div>
+                </div>
+            </div>
+            <footer class="manual-footer">
+                <div class="nav-controls">
+                    <button class="nav-btn" onclick="prevStep()">← Geri</button>
+                    <div id="m-project-parts" class="parts-tag-cloud"></div>
+                    <button class="nav-btn" onclick="nextStep()">İleri →</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
