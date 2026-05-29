@@ -24,7 +24,7 @@ body { background: var(--dark); color: #fff; font-family: 'Roboto', sans-serif; 
 .project-btn { background: var(--neon-green); color: #000; border: none; padding: 10px 15px; border-radius: 4px; font-weight: bold; cursor: pointer; font-family: 'Orbitron'; font-size: 10px; margin: 5px; }
 .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); }
 .manual-book { background: #fff; color: #333; width: 85%; max-width: 1000px; margin: 2% auto; border-radius: 12px; overflow: hidden; box-shadow: 0 0 40px rgba(0,243,255,0.4); }
-.manual-header { background: var(--red); color: #fff; padding: 20px; text-align: center; }
+.manual-header { background: var(--red); color: #fff; padding: 20px; text-align: center; position: relative; }
 .manual-body { display: flex; padding: 30px; gap: 30px; min-height: 400px; }
 .manual-visual { flex: 1.5; border: 3px solid #f0f0f0; background: #fff; display: flex; align-items: center; justify-content: center; border-radius: 10px; }
 .manual-visual img { max-width: 100%; height: auto; }
