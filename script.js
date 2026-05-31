@@ -31,7 +31,7 @@ const materialData = {
     "Jumper Kablo": { img: "Arduino%20Atölyesi/jumper.jpg", desc: "Bağlantı kabloları." },
     "Kalıcı Buton": { img: "Arduino%20Atölyesi/kalici_buton.jpg", desc: "Konumunu koruyan anahtar." },
     "Kamera Modülü": { img: "Arduino%20Atölyesi/kamera_modulu.jpg", desc: "Görüntü sensörü." },
-    "Kenar Sensörü": { img: "Arduino%20Atölyesi/kenar_sensorı.jpg", desc: "Boşluk algılayıcı." },
+    "Kenar Sensörü": { img: "Arduino%20Atölyesi/kenar_sensoru.jpg", desc: "Boşluk algılayıcı." },
     "Keypad": { img: "Arduino%20Atölyesi/keypad.jpg", desc: "Sayısal tuş takımı." },
     "Kondansatör": { img: "Arduino%20Atölyesi/kondansator.jpg", desc: "Enerji depolayıcı." },
     "Krokodil Kablo": { img: "Arduino%20Atölyesi/krokodil.jpg", desc: "Kıskaçlı test kablosu." },
