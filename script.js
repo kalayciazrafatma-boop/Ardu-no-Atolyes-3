@@ -5,19 +5,16 @@ let currentProject = null;
 let currentStep = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. API: Uygulamanın kendi verilerini JSON dosyasından çekmesi (Stateless İstek)
+    // 1. API: Uygulamanın kendi verilerini JSON dosyasından çekmesi
     await loadDatabaseAPI();
 
-    // 2. API: Dış dünya ile iletişim (Bulunduğumuz lokasyonun hava durumu)
-    await checkWeatherAPI();
-
-    // 3. STATEFUL YAPI: LocalStorage'dan önceki seçimleri yükleme
+    // STATEFUL YAPI: LocalStorage'dan önceki seçimleri yükleme
     restoreState();
 
     window.onclick = function(e) { if (e.target == document.getElementById('manual-modal')) closeManual(); }
 });
 
-// API 1 Fonksiyonu
+// API Fonksiyonu
 async function loadDatabaseAPI() {
     try {
         const response = await fetch('data.json');
@@ -30,23 +27,7 @@ async function loadDatabaseAPI() {
         const sortedNames = Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr'));
         renderInventory(sortedNames);
     } catch (error) {
-        console.error("API 1 Hatası (Data Yüklenemedi):", error);
-    }
-}
-
-// API 2 Fonksiyonu (Lokasyonun Koordinatlarına Göre - İstanbul)
-async function checkWeatherAPI() {
-    try {
-        const response = await fetch("https://api.open-meteo.com/v1/forecast?latitude=41.0082&longitude=28.9784&current_weather=true");
-        const data = await response.json();
-        const temp = data.current_weather.temperature;
-        
-        const weatherDiv = document.getElementById('weather-msg');
-        if (weatherDiv) {
-            weatherDiv.innerHTML = `🌟 Atölyede çalışmak için harika bir gün! (Dışarısı ${temp}°C)`;
-        }
-    } catch (error) {
-        console.error("API 2 Hatası (Hava Durumu Çekilemedi):", error);
+        console.error("API Hatası (Data Yüklenemedi):", error);
     }
 }
 
