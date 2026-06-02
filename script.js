@@ -5,7 +5,7 @@ let currentProject = null;
 let currentStep = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. API: Uygulamanın kendi verilerini JSON dosyasından çekmesi
+    // 1. API: Uygulamanın kendi verilerini JSON dosyasından çekmesi (Internal API)
     await loadDatabaseAPI();
 
     // STATEFUL YAPI: LocalStorage'dan önceki seçimleri yükleme
