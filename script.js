@@ -5,11 +5,8 @@ let currentProject = null;
 let currentStep = 0;
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // 1. API: Uygulamanın kendi verilerini JSON dosyasından çekmesi (Internal API)
+    // 1. API: Uygulamanın kendi verilerini JSON dosyasından çekmesi
     await loadDatabaseAPI();
-
-    // 2. API: GitHub'dan geliştirici günlüğünü canlı çekme (External API)
-    await fetchGitHubLogs();
 
     // STATEFUL YAPI: LocalStorage'dan önceki seçimleri yükleme
     restoreState();
@@ -17,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     window.onclick = function(e) { if (e.target == document.getElementById('manual-modal')) closeManual(); }
 });
 
-// API 1 Fonksiyonu (Proje ve Malzemeler)
+// API Fonksiyonu
 async function loadDatabaseAPI() {
     try {
         const response = await fetch('data.json');
@@ -30,51 +27,7 @@ async function loadDatabaseAPI() {
         const sortedNames = Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr'));
         renderInventory(sortedNames);
     } catch (error) {
-        console.error("API 1 Hatası (Data Yüklenemedi):", error);
-    }
-}
-
-// API 2 Fonksiyonu (GitHub Geliştirici Günlüğü)
-async function fetchGitHubLogs() {
-    const terminal = document.getElementById('terminal-content');
-    try {
-        // GitHub Events API üzerinden son commitleri çekiyoruz
-        const response = await fetch("https://api.github.com/users/kalayciazrafatma/events/public");
-        if (!response.ok) throw new Error("GitHub erişimi reddedildi.");
-        
-        const events = await response.json();
-        
-        // Sadece Push (Commit) eventlerini filtrele ve son 4 tanesini al
-        const pushEvents = events.filter(e => e.type === "PushEvent").slice(0, 4);
-        
-        terminal.innerHTML = ""; // Yükleniyor yazısını temizle
-        
-        if (pushEvents.length === 0) {
-            terminal.innerHTML = "<div class='log-entry'>> Sistem güncel. Yeni kayıt yok.</div>";
-            return;
-        }
-
-        pushEvents.forEach(ev => {
-            const repoName = ev.repo.name.split('/')[1]; // Sadece repo adını al
-            const commits = ev.payload.commits;
-            const commitMsg = (commits && commits.length > 0) ? commits[0].message : "Gizli güncelleme işlendi.";
-            
-            // Tarih bilgisini okunabilir saate çevir
-            const date = new Date(ev.created_at);
-            const timeString = date.toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'});
-
-            terminal.innerHTML += `
-                <div class="log-entry">
-                    <span class="log-time">[${timeString}]</span> 
-                    <span style="color:#fff;">${repoName}</span><br>
-                    > ${commitMsg}
-                </div>
-            `;
-        });
-        
-    } catch (error) {
-        terminal.innerHTML = "<span style='color: var(--red);'>[HATA] Dış veri sunucusuna ulaşılamadı.</span>";
-        console.error("API 2 Hatası (GitHub Log):", error);
+        console.error("API Hatası (Data Yüklenemedi):", error);
     }
 }
 
