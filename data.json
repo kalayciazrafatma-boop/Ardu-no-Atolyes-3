@@ -34,6 +34,7 @@
     "Keypad": { "img": "Arduino%20Atölyesi/keypad.jpg", "desc": "Sayısal veri giriş tuş takımı." },
     "Kondansatör": { "img": "Arduino%20Atölyesi/kondansator.jpg", "desc": "Enerji depolayan devre elemanı." },
     "Krokodil Kablo": { "img": "Arduino%20Atölyesi/krokodil.jpg", "desc": "Kıskaçlı test bağlantı kablosu." },
+    "kızılötesi takip izleme sensörü": {"img": "Arduino%20Atölyesi/kızılötesi takip izleme sensörü.jpg", "desc":"Çizgi izler sensörünün kullandığı zemin."},
     "Kumpas": { "img": "Arduino%20Atölyesi/kumpas.jpg", "desc": "Hassas ölçüm aracı." },
     "L293D Entegre": { "img": "Arduino%20Atölyesi/l293d.jpg", "desc": "Motor sürücü çipi." },
     "L298N Motor Sürücü": { "img": "Arduino%20Atölyesi/l298n.jpg", "desc": "Motor hız ve yön kontrol devresi." },
@@ -246,7 +247,7 @@
         ] 
     },
     { 
-        "id": "p17", "name": "17. Çizgi İzleyen", "required": ["Arduino Uno R3", "L298N Motor Sürücü", "Çizgi Sensörü", "Tekerlek"], 
+        "id": "p17", "name": "17. Çizgi İzleyen", "required": ["Arduino Uno R3", "L298N Motor Sürücü", "Çizgi Sensörü", "Tekerlek", "Kızılötesi takip izleme sensörü"
         "steps": [
             { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "1. Robot şasesine motor, tekerlek, sarhoş tekerlek ve L298N bağlantılarını temel sürüş şemasına göre yapın." },
             { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "2. 2 adet Çizgi sensörünü (TCRT5000 vb.) robotun ön-alt tarafına yere bakacak şekilde sabitleyin." },
