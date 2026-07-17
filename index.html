@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arduino Tasarım Merkezi Pro</title>
-    <!-- CSS dosyasının ismi tam olarak 'style.css' olmalı -->
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <div class="app-container">
+        <!-- Yan Panel -->
         <aside class="sidebar">
             <div class="logo">ARDUINO TASARIM MERKEZİ</div>
             <div class="search-box">
@@ -20,20 +20,49 @@
             <div id="inventory-list" class="inventory-grid"></div>
         </aside>
 
+        <!-- Çalışma Alanı -->
         <main class="workbench">
             <div class="hud-display">
                 <div class="status-panel">
                     <div>SİSTEM: <span class="neon-text">HAZIR</span></div>
                     <div>MASADAKİ PARÇA: <span id="part-count">0</span></div>
                 </div>
+                <!-- Proje Butonlarının Geleceği Alan -->
+                <div id="project-links" class="project-panel">
+                    <p style="font-size: 11px; color: #888;">Gerekli parçaları ekleyin.</p>
+                </div>
             </div>
+            
             <div id="table-canvas" class="grid-table">
                 <div class="watermark">SANAL ROBOTİK TASARIM ALANI</div>
             </div>
         </main>
     </div>
 
-    <!-- JS dosyasının ismi tam olarak 'script.js' olmalı -->
+    <!-- Proje Kılavuz Modalı (Modal) -->
+    <div id="manual-modal" class="modal">
+        <div class="manual-book">
+            <div class="manual-header">
+                <span class="close-manual" onclick="closeManual()">&times;</span>
+                <h2 id="m-project-name">Proje Adı</h2>
+            </div>
+            <div class="manual-body">
+                <div class="manual-visual">
+                    <img id="m-project-img" src="" alt="Proje">
+                </div>
+                <div class="manual-steps">
+                    <div id="step-indicator" style="font-weight:bold; margin-bottom:10px;">ADIM 1 / 1</div>
+                    <div id="m-project-steps" class="step-content"></div>
+                    <div class="nav-controls">
+                        <button class="nav-btn" onclick="prevStep()">GERİ</button>
+                        <button class="nav-btn" onclick="nextStep()">İLERİ</button>
+                    </div>
+                </div>
+            </div>
+            <div id="m-project-parts" style="padding:10px; text-align:center;"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
