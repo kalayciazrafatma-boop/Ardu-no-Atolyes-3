@@ -4,18 +4,17 @@ let selectedInventory = [];
 let currentProject = null;
 let currentStep = 0;
 
-// Görsel yollarındaki hataları engellemek için temizleyici fonksiyon
-const cleanPath = (path) => {
+/**
+ * Dosya yollarını tarayıcı uyumlu hale getiren yardımcı fonksiyon.
+ * Boşlukları ve Türkçe karakterleri güvenli karakterlere çevirir.
+ */
+function getFixedPath(path) {
     if (!path) return 'assets/placeholder.png';
-    // Klasör isimlerinde boşluk veya Türkçe karakter varsa burada düzeltme yapabilirsiniz.
-    return path; 
-};
-
-// Görsel yüklenemezse çalışacak hata yönetimi
-function handleImgError(imgElement) {
-    imgElement.onerror = null; // Sonsuz döngüden kaçın
-    imgElement.src = 'assets/placeholder.png'; // Projenizde bu isimde bir resim bulundurun
-    console.warn("Görsel yüklenemedi, yedek görsel kullanıldı.");
+    const parts = path.split('/');
+    const fileName = parts.pop();
+    const folderPath = parts.join('/');
+    // encodeURIComponent, Türkçe karakterleri ve boşlukları hatasız yola çevirir
+    return folderPath + '/' + encodeURIComponent(fileName);
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -35,13 +34,7 @@ async function loadDatabaseAPI() {
         materialData = data.materials;
         projectDatabase = data.projects;
         renderInventory(Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr')));
-    } catch (error) {
-        console.error("API Hatası:", error);
-    }
-}
-
-function saveState() {
-    localStorage.setItem("userWorkshopState", JSON.stringify(selectedInventory));
+    } catch (error) { console.error("API Hatası:", error); }
 }
 
 function restoreState() {
@@ -72,7 +65,7 @@ function addToTable(name, isRestoring = false) {
         selectedInventory.push(name);
         document.getElementById('part-count').innerText = selectedInventory.length;
         
-        const imgSrc = cleanPath(materialData[name].img);
+        const imgSrc = getFixedPath(materialData[name].img);
         const itemContainer = document.createElement('div');
         itemContainer.className = "placed-part";
         itemContainer.style.position = "absolute";
@@ -82,13 +75,13 @@ function addToTable(name, isRestoring = false) {
         itemContainer.innerHTML = `
             <div style="position:relative; text-align:center; cursor:pointer;" onclick="removeFromTable('${name}', this.parentElement)">
                 <span style="position:absolute; top:-12px; right:-12px; background:#ff4d4d; color:white; border-radius:50%; width:22px; height:22px; font-size:13px; display:flex; align-items:center; justify-content:center; z-index:100; border:1px solid #fff; font-weight:bold;">×</span>
-                <img src="${imgSrc}" width="80" style="border: 2px solid #00f3ff; border-radius: 8px; background: #fff;" onerror="handleImgError(this)">
-                <div style="font-size: 10px; color: #00f3ff; font-weight: bold; margin-top: 5px; text-shadow: 1px 1px 2px #000;">${name}</div>
+                <img src="${imgSrc}" width="80" style="border: 2px solid #00f3ff; border-radius: 8px; background: #fff;" onerror="this.src='assets/placeholder.png'">
+                <div style="font-size: 10px; color: #00f3ff; font-weight: bold; margin-top: 5px;">${name}</div>
             </div>`;
         
         document.getElementById('table-canvas').appendChild(itemContainer);
         checkProjects();
-        if (!isRestoring) saveState();
+        if (!isRestoring) localStorage.setItem("userWorkshopState", JSON.stringify(selectedInventory));
     }
 }
 
@@ -97,13 +90,14 @@ function removeFromTable(name, element) {
     element.remove();
     document.getElementById('part-count').innerText = selectedInventory.length;
     checkProjects();
-    saveState();
+    localStorage.setItem("userWorkshopState", JSON.stringify(selectedInventory));
 }
 
 function checkProjects() {
     const available = projectDatabase.filter(proj => proj.required.every(req => selectedInventory.includes(req)));
     const linkBox = document.getElementById('project-links');
     if (!linkBox) return;
+    
     linkBox.innerHTML = available.length > 0 
         ? available.map(p => `<button class="project-btn" onclick="openManual('${p.id}')">${p.name}</button>`).join('')
         : `<p style="font-size: 11px; color: #888;">Gerekli parçaları ekleyin.</p>`;
@@ -126,19 +120,11 @@ function updateStepUI() {
     document.getElementById('m-project-steps').innerText = step.text;
     
     imgEl.style.display = 'block';
-    imgEl.src = cleanPath(step.img);
+    imgEl.src = getFixedPath(step.img); // Güvenli yol
     
     imgEl.onerror = function() {
         this.style.display = 'none';
-        let err = document.getElementById('error-msg');
-        if (!err) {
-            err = document.createElement('div');
-            err.id = 'error-msg';
-            err.style.color = '#ff4d4d';
-            err.style.padding = '20px';
-            err.innerText = "Görsel yüklenemedi. Lütfen dosya yolunu kontrol edin.";
-            this.parentElement.appendChild(err);
-        }
+        console.error("Görsel yüklenemedi, aranan yol:", this.src);
     };
     
     document.getElementById('m-project-parts').innerHTML = currentProject.required
@@ -147,12 +133,7 @@ function updateStepUI() {
 
 function nextStep() { if (currentProject && currentStep < currentProject.steps.length - 1) { currentStep++; updateStepUI(); } }
 function prevStep() { if (currentProject && currentStep > 0) { currentStep--; updateStepUI(); } }
-function closeManual() { 
-    document.getElementById('manual-modal').style.display = "none"; 
-    const err = document.getElementById('error-msg');
-    if (err) err.remove();
-}
-
+function closeManual() { document.getElementById('manual-modal').style.display = "none"; }
 function searchParts() {
     const term = document.getElementById('partSearch').value.toLowerCase();
     const filtered = Object.keys(materialData).filter(name => name.toLowerCase().includes(term)).sort((a, b) => a.localeCompare(b, 'tr'));
