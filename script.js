@@ -4,6 +4,20 @@ let selectedInventory = [];
 let currentProject = null;
 let currentStep = 0;
 
+// Görsel yollarındaki hataları engellemek için temizleyici fonksiyon
+const cleanPath = (path) => {
+    if (!path) return 'assets/placeholder.png';
+    // Klasör isimlerinde boşluk veya Türkçe karakter varsa burada düzeltme yapabilirsiniz.
+    return path; 
+};
+
+// Görsel yüklenemezse çalışacak hata yönetimi
+function handleImgError(imgElement) {
+    imgElement.onerror = null; // Sonsuz döngüden kaçın
+    imgElement.src = 'assets/placeholder.png'; // Projenizde bu isimde bir resim bulundurun
+    console.warn("Görsel yüklenemedi, yedek görsel kullanıldı.");
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
     await loadDatabaseAPI();
     restoreState();
@@ -16,16 +30,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function loadDatabaseAPI() {
     try {
         const response = await fetch('data.json');
-        if (!response.ok) throw new Error("Veritabanına ulaşılamadı.");
-        
+        if (!response.ok) throw new Error("Veritabanı yüklenemedi.");
         const data = await response.json();
         materialData = data.materials;
         projectDatabase = data.projects;
-
-        const sortedNames = Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr'));
-        renderInventory(sortedNames);
+        renderInventory(Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr')));
     } catch (error) {
-        console.error("API Hatası (Data Yüklenemedi):", error);
+        console.error("API Hatası:", error);
     }
 }
 
@@ -36,11 +47,8 @@ function saveState() {
 function restoreState() {
     const saved = localStorage.getItem("userWorkshopState");
     if (saved) {
-        const previousInventory = JSON.parse(saved);
-        previousInventory.forEach(itemName => {
-            if (materialData[itemName]) {
-                addToTable(itemName, true);
-            }
+        JSON.parse(saved).forEach(itemName => {
+            if (materialData[itemName]) addToTable(itemName, true);
         });
     }
 }
@@ -64,7 +72,7 @@ function addToTable(name, isRestoring = false) {
         selectedInventory.push(name);
         document.getElementById('part-count').innerText = selectedInventory.length;
         
-        const imgSrc = materialData[name].img || 'assets/placeholder.png';
+        const imgSrc = cleanPath(materialData[name].img);
         const itemContainer = document.createElement('div');
         itemContainer.className = "placed-part";
         itemContainer.style.position = "absolute";
@@ -74,7 +82,7 @@ function addToTable(name, isRestoring = false) {
         itemContainer.innerHTML = `
             <div style="position:relative; text-align:center; cursor:pointer;" onclick="removeFromTable('${name}', this.parentElement)">
                 <span style="position:absolute; top:-12px; right:-12px; background:#ff4d4d; color:white; border-radius:50%; width:22px; height:22px; font-size:13px; display:flex; align-items:center; justify-content:center; z-index:100; border:1px solid #fff; font-weight:bold;">×</span>
-                <img src="${imgSrc}" width="80" style="border: 2px solid #00f3ff; border-radius: 8px; background: #fff; box-shadow: 0 0 10px rgba(0,243,255,0.3);" onerror="this.onerror=null; this.src='assets/placeholder.png';">
+                <img src="${imgSrc}" width="80" style="border: 2px solid #00f3ff; border-radius: 8px; background: #fff;" onerror="handleImgError(this)">
                 <div style="font-size: 10px; color: #00f3ff; font-weight: bold; margin-top: 5px; text-shadow: 1px 1px 2px #000;">${name}</div>
             </div>`;
         
@@ -96,12 +104,9 @@ function checkProjects() {
     const available = projectDatabase.filter(proj => proj.required.every(req => selectedInventory.includes(req)));
     const linkBox = document.getElementById('project-links');
     if (!linkBox) return;
-    
-    if (available.length > 0) {
-        linkBox.innerHTML = available.map(p => `<button class="project-btn" onclick="openManual('${p.id}')">${p.name}</button>`).join('');
-    } else {
-        linkBox.innerHTML = `<p style="font-size: 11px; color: #888;">Gerekli parçaları ekleyin.</p>`;
-    }
+    linkBox.innerHTML = available.length > 0 
+        ? available.map(p => `<button class="project-btn" onclick="openManual('${p.id}')">${p.name}</button>`).join('')
+        : `<p style="font-size: 11px; color: #888;">Gerekli parçaları ekleyin.</p>`;
 }
 
 function openManual(id) {
@@ -121,16 +126,18 @@ function updateStepUI() {
     document.getElementById('m-project-steps').innerText = step.text;
     
     imgEl.style.display = 'block';
-    imgEl.src = step.img;
+    imgEl.src = cleanPath(step.img);
+    
     imgEl.onerror = function() {
         this.style.display = 'none';
-        if (!document.getElementById('error-msg')) {
-            const err = document.createElement('div');
+        let err = document.getElementById('error-msg');
+        if (!err) {
+            err = document.createElement('div');
             err.id = 'error-msg';
             err.style.color = '#ff4d4d';
             err.style.padding = '20px';
             err.innerText = "Görsel yüklenemedi. Lütfen dosya yolunu kontrol edin.";
-            imgEl.parentElement.appendChild(err);
+            this.parentElement.appendChild(err);
         }
     };
     
