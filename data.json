@@ -249,11 +249,11 @@
     { 
         "id": "p17", "name": "17. Çizgi İzleyen", "required": ["Arduino Uno R3", "L298N Motor Sürücü", "Çizgi Sensörü", "Tekerlek", "kızılötesi takip izleme sensörü"],
         "steps": [
-            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "1. Robot şasesine motor, tekerlek, sarhoş tekerlek ve L298N bağlantılarını temel sürüş şemasına göre yapın." },
-            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "2. 2 adet Çizgi sensörünü (TCRT5000 vb.) robotun ön-alt tarafına yere bakacak şekilde sabitleyin." },
-            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "3. Sağ çizgi sensörünün VCC->5V, GND->GND, D0 (Dijital) pinini Arduino D2'ye bağlayın." },
-            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "4. Sol çizgi sensörünün VCC->5V, GND->GND, D0 (Dijital) pinini Arduino D3'e bağlayın." },
-            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "5. Çizgi sensörlerinin üzerindeki potansiyometreyi çevirerek siyah/beyaz zemin hassasiyetini ayarlayın." }
+            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.png", "text": "1. Robot şasesine motor, tekerlek, sarhoş tekerlek ve L298N bağlantılarını temel sürüş şemasına göre yapın." },
+            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.png", "text": "2. 2 adet Çizgi sensörünü (TCRT5000 vb.) robotun ön-alt tarafına yere bakacak şekilde sabitleyin." },
+            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.png", "text": "3. Sağ çizgi sensörünün VCC->5V, GND->GND, D0 (Dijital) pinini Arduino D2'ye bağlayın." },
+            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.png", "text": "4. Sol çizgi sensörünün VCC->5V, GND->GND, D0 (Dijital) pinini Arduino D3'e bağlayın." },
+            { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.png", "text": "5. Çizgi sensörlerinin üzerindeki potansiyometreyi çevirerek siyah/beyaz zemin hassasiyetini ayarlayın." }
         ] 
     },
     { 
