@@ -1,3 +1,4 @@
+console.log("JS ÇALIŞIYOR!");
 let materialData = {};
 let projectDatabase = [];
 let selectedInventory = [];
