@@ -4,13 +4,9 @@ let selectedInventory = [];
 let currentProject = null;
 let currentStep = 0;
 
-/**
- * Görsel yollarını tarayıcı uyumlu hale getiren güvenli fonksiyon.
- * Dosya isimlerini URL standardına çevirir (Boşluklar ve Türkçe karakterler için).
- */
+// URL'yi temizleyen ve tarayıcı dostu yapan yardımcı fonksiyon
 function getFixedPath(path) {
     if (!path) return 'assets/placeholder.png';
-    // Klasör ismini (klasör/) ve dosya adını (.png) ayırır, dosyayı kodlar
     const parts = path.split('/');
     const fileName = parts.pop();
     const folderPath = parts.join('/');
@@ -20,21 +16,24 @@ function getFixedPath(path) {
 document.addEventListener("DOMContentLoaded", async () => {
     await loadDatabaseAPI();
     restoreState();
-    window.onclick = function(e) { 
-        const modal = document.getElementById('manual-modal');
-        if (e.target == modal) closeManual(); 
-    };
 });
 
 async function loadDatabaseAPI() {
     try {
         const response = await fetch('data.json');
-        if (!response.ok) throw new Error("Veritabanı yüklenemedi.");
+        if (!response.ok) throw new Error("Dosya bulunamadı.");
         const data = await response.json();
+        
+        // Verinin dolu olduğunu kontrol et
+        if (!data.materials) throw new Error("JSON formatı hatalı.");
+        
         materialData = data.materials;
         projectDatabase = data.projects;
         renderInventory(Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr')));
-    } catch (error) { console.error("API Hatası:", error); }
+    } catch (error) { 
+        console.error("Yükleme Hatası:", error);
+        alert("Envanter yüklenemedi, konsolu kontrol edin.");
+    }
 }
 
 function addToTable(name, isRestoring = false) {
@@ -42,9 +41,7 @@ function addToTable(name, isRestoring = false) {
         selectedInventory.push(name);
         document.getElementById('part-count').innerText = selectedInventory.length;
         
-        // Burası güncellendi: getFixedPath ile yol garantilendi
         const imgSrc = getFixedPath(materialData[name].img);
-        
         const itemContainer = document.createElement('div');
         itemContainer.className = "placed-part";
         itemContainer.style.position = "absolute";
@@ -74,16 +71,16 @@ function updateStepUI() {
     document.getElementById('m-project-steps').innerText = step.text;
     
     imgEl.style.display = 'block';
-    // Burası güncellendi: getFixedPath ile yol garantilendi
     imgEl.src = getFixedPath(step.img);
     
     imgEl.onerror = function() {
         this.style.display = 'none';
-        console.error("Görsel yüklenemedi, aranan adres:", this.src);
+        console.error("Görsel yüklenemedi:", this.src);
     };
     
     document.getElementById('m-project-parts').innerHTML = currentProject.required
         .map(p => `<span class="part-tag">${p}</span>`).join('');
 }
 
-// Geri kalan yardımcı fonksiyonlarınız (removeFromTable, checkProjects, nextStep, prevStep, closeManual, searchParts) aynen kalabilir.
+// Diğer yardımcı fonksiyonlar (restoreState, removeFromTable, checkProjects, closeManual, searchParts) 
+// aynı şekilde kalabilir.
