@@ -247,7 +247,7 @@
         ] 
     },
     { 
-        "id": "p17", "name": "17. Çizgi İzleyen", "required": ["Arduino Uno R3", "L298N Motor Sürücü", "Çizgi Sensörü", "Tekerlek", "Kızılötesi takip izleme sensörü"],
+        "id": "p17", "name": "17. Çizgi İzleyen", "required": ["Arduino Uno R3", "L298N Motor Sürücü", "Çizgi Sensörü", "Tekerlek", "kızılötesi takip izleme sensörü"],
         "steps": [
             { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "1. Robot şasesine motor, tekerlek, sarhoş tekerlek ve L298N bağlantılarını temel sürüş şemasına göre yapın." },
             { "img": "Ardıino%20Proje%20Görselleri/çizgi%20izleyen%20araba.jpg", "text": "2. 2 adet Çizgi sensörünü (TCRT5000 vb.) robotun ön-alt tarafına yere bakacak şekilde sabitleyin." },
