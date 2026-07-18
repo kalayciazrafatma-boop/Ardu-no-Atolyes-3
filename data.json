@@ -32,6 +32,7 @@
     "Kamera Modülü": { "img": "Arduino%20Atölyesi/kamera_modulu.jpg", "desc": "Görüntü sensörü." },
     "Kenar Sensörü": { "img": "Arduino%20Atölyesi/kenar_sensoru.jpg", "desc": "Boşluk algılayıcı." },
     "Keypad": { "img": "Arduino%20Atölyesi/keypad.jpg", "desc": "Sayısal tuş takımı." },
+    "Kızılötesi Takip İzleme Sensörü": { "img": "Arduino%20Atölyesi/kızılötesi%20takip%20izleme%20sensörü.jpg","desc": "Yerdeki siyah ve beyaz çizgiyi ayırt eden IR sensör."},
     "Kondansatör": { "img": "Arduino%20Atölyesi/kondansator.jpg", "desc": "Enerji depolayıcı." },
     "Krokodil": { "img": "Arduino%20Atölyesi/krokodil.jpg", "desc": "Test kablosu." },
     "Kumpas": { "img": "Arduino%20Atölyesi/kumpas.jpg", "desc": "Ölçüm aracı." },
