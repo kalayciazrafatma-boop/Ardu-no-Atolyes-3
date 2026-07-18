@@ -1,4 +1,3 @@
-// ARDUINO TASARIM MERKEZİ - %100 HATASIZ VE JSON SİSTEMLİ TAM KOD
 let materialData = {};
 let projectDatabase = [];
 let selectedInventory = [];
@@ -11,14 +10,12 @@ fetch('data.json')
     .then(data => {
         materialData = data.materials;
         projectDatabase = data.projects;
-        
-        // MALZEMELERİ ALFABETİK SIRALA VE LİSTELE
         const sortedNames = Object.keys(materialData).sort((a, b) => a.localeCompare(a, 'tr'));
         renderInventory(sortedNames);
     })
     .catch(error => {
-        console.error('Veri yükleme hatası:', error);
-        alert("Veriler yüklenemedi! Lütfen data.json dosyasını kontrol edin.");
+        console.error('Hata:', error);
+        alert("Veriler yüklenemedi! data.json dosyasını kontrol edin.");
     });
 
 function renderInventory(items) {
@@ -93,7 +90,7 @@ function updateStepUI() {
     imgEl.onerror = function() {
         this.style.display = 'none';
         const parent = this.parentElement;
-        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen Ardıino Proje Görselleri klasöründeki ismi kontrol edin.</div>`;
+        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen klasör adını (Ardıino) ve dosya adını kontrol edin.</div>`;
     };
     document.getElementById('m-project-parts').innerHTML = currentProject.required.map(p => `<span class="part-tag">${p}</span>`).join('');
 }
@@ -101,7 +98,6 @@ function updateStepUI() {
 function nextStep() { if (currentProject && currentStep < currentProject.steps.length - 1) { currentStep++; updateStepUI(); } }
 function prevStep() { if (currentProject && currentStep > 0) { currentStep--; updateStepUI(); } }
 function closeManual() { document.getElementById('manual-modal').style.display = "none"; }
-
 function searchParts() {
     const term = document.getElementById('partSearch').value.toLowerCase();
     const filtered = Object.keys(materialData).filter(name => name.toLowerCase().includes(term)).sort((a, b) => a.localeCompare(b, 'tr'));
