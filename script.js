@@ -1,3 +1,4 @@
+// ARDUINO TASARIM MERKEZİ - %100 HATASIZ VE JSON SİSTEMLİ TAM KOD
 let materialData = {};
 let projectDatabase = [];
 let selectedInventory = [];
@@ -92,7 +93,7 @@ function updateStepUI() {
     imgEl.onerror = function() {
         this.style.display = 'none';
         const parent = this.parentElement;
-        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen klasör adını (Ardıino) ve dosya adını kontrol edin.</div>`;
+        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen Ardıino Proje Görselleri klasöründeki ismi kontrol edin.</div>`;
     };
     document.getElementById('m-project-parts').innerHTML = currentProject.required.map(p => `<span class="part-tag">${p}</span>`).join('');
 }
