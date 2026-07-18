@@ -10,7 +10,8 @@ fetch('data.json')
     .then(data => {
         materialData = data.materials;
         projectDatabase = data.projects;
-        const sortedNames = Object.keys(materialData).sort((a, b) => a.localeCompare(a, 'tr'));
+        // HATA DÜZELTİLDİ: a.localeCompare(b, 'tr')
+        const sortedNames = Object.keys(materialData).sort((a, b) => a.localeCompare(b, 'tr'));
         renderInventory(sortedNames);
     })
     .catch(error => {
@@ -84,20 +85,24 @@ function updateStepUI() {
     document.getElementById('m-project-name').innerText = currentProject.name;
     document.getElementById('step-indicator').innerText = `ADIM ${currentStep + 1} / ${currentProject.steps.length}`;
     document.getElementById('m-project-steps').innerText = step.text;
+    
     const imgEl = document.getElementById('m-project-img');
-    imgEl.style.display = 'block';
     imgEl.src = step.img;
+    imgEl.style.display = 'block'; // Her adımda önce görünür yapıyoruz
+
     imgEl.onerror = function() {
         this.style.display = 'none';
-        const parent = this.parentElement;
-        parent.innerHTML = `<div style="color:#666; font-size:14px; text-align:center; padding:20px;">Görsel klasörde bulunamadı. Lütfen klasör adını (Ardıino) ve dosya adını kontrol edin.</div>`;
+        // HTML'i tamamen bozmak yerine sadece hata mesajı gösterilebilir.
+        console.error("Görsel yüklenemedi:", step.img);
     };
+    
     document.getElementById('m-project-parts').innerHTML = currentProject.required.map(p => `<span class="part-tag">${p}</span>`).join('');
 }
 
 function nextStep() { if (currentProject && currentStep < currentProject.steps.length - 1) { currentStep++; updateStepUI(); } }
 function prevStep() { if (currentProject && currentStep > 0) { currentStep--; updateStepUI(); } }
 function closeManual() { document.getElementById('manual-modal').style.display = "none"; }
+
 function searchParts() {
     const term = document.getElementById('partSearch').value.toLowerCase();
     const filtered = Object.keys(materialData).filter(name => name.toLowerCase().includes(term)).sort((a, b) => a.localeCompare(b, 'tr'));
